@@ -1,0 +1,201 @@
+/*
+Definir estrutura t_list:
+    data  -> ponteiro para valor genérico
+    next  -> ponteiro para próximo nó
+
+Função add_elem(data, size):
+    Alocar memória para novo nó
+    Alocar memória para o valor do nó com tamanho 'size'
+    Copiar byte a byte o valor de 'data' para 'node->data'
+    next do nó = NULL
+    Retornar nó
+
+Função append(begin, data, size):
+    Criar novo nó usando add_elem(data, size)
+    Se lista estiver vazia:
+        begin = novo nó
+    Senão:
+        Percorrer a lista até o último nó
+        last->next = novo nó
+
+Função run_list(begin):
+    Enquanto begin não for NULL:
+        Imprimir valor do nó
+        Se existir next, imprimir separador (ex: "->")
+        Avançar para o próximo nó
+
+Função free_list(begin):
+    Enquanto begin não for NULL:
+        Guardar begin->next em tmp
+        Liberar memória de begin->data
+        Liberar memória do nó begin
+        Avançar begin = tmp
+
+Função ft_atoi(str):
+    Converter string para inteiro
+    Retornar inteiro
+
+Função main(argc, argv):
+    Se argc < 2:
+        Imprimir mensagem de uso
+        Terminar
+
+    lista = NULL
+    Para cada argumento argv[i]:
+        val = ft_atoi(argv[i])
+        append(&lista, &val, sizeof(int))
+
+    run_list(lista)
+    free_list(lista)
+*/
+
+int ft_isNum(char *n)
+{
+    int i = 0;
+    if(!n)
+        return 0;
+    if(n[0] == '-' || n[0] == '+')
+        i++;
+    while(n[i])
+    {
+        if(n[i] >= '0' && n[i] <= '9')
+            return 1;
+        i++;
+    }
+    return 0;
+}
+
+
+void ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
+{
+    t_list *new = add_elem(data, sizeof(int));
+    t_list *node = *begin_list;
+    
+    if(!*begin_list || cmp (data, node->data) < 0) // o meu primeiro numero e inferior
+    {
+        new->next = *begin_list;
+        *begin_list =  new;
+        return;   
+    }
+    while(node->next && cmp(data, node->next->data) >= 0)
+    {
+        node = node->next;
+    }
+    
+    new->next = node->next;
+    node->next = new;
+}
+
+int main(int ac, char **av)
+{
+    if(ac < 2)
+        return 1;   
+    
+    int i = 1; 
+    int *d = malloc(sizeof(int));
+
+    *d = 10;
+    
+    t_list *list = NULL;
+    while(i < ac)
+    {
+        if(!ft_isNum(av[i]))
+        {
+            printf("POE NUMEROS CRLHS!");
+            return 1;
+        }
+        int val = ft_atoi(av[i]);
+        ft_sorted_list_insert(&list, &val, cmp);
+        i++;    
+    }
+    run_list(list);
+    printf("\n");
+    free_list(&list);
+    return 0;
+}
+
+/*
+Exercício Base: Ordenar usando duas pilhas
+
+Objetivo:
+Dada uma lista de números passados via argv, você deve organizar os números em ordem crescente usando apenas duas pilhas (stack_a e stack_b) e operações limitadas:
+
+sa / sb – troca os dois primeiros elementos da pilha.
+
+pa / pb – move o topo de uma pilha para a outra.
+
+ra / rb – rotaciona a pilha (o topo vai para o final).
+
+rra / rrb – rotaciona a pilha ao contrário (o final vai para o topo).
+
+Estrutura sugerida:
+
+typedef struct s_list
+{
+    int data;
+    struct s_list *next;
+} t_list;
+
+
+stack_a inicia com todos os números da entrada (argv).
+
+stack_b inicia vazia.
+
+Passos do exercício:
+
+Criar stack_a com os números passados.
+
+Criar stack_b vazia.
+
+Implementar funções básicas:
+
+push(t_list **from, t_list **to) – equivalente a pa ou pb.
+
+swap(t_list **stack) – equivalente a sa ou sb.
+
+rotate(t_list **stack) – equivalente a ra ou rb.
+
+reverse_rotate(t_list **stack) – equivalente a rra ou rrb.
+
+Criar um algoritmo que mova elementos de stack_a para stack_b e depois volte para stack_a em ordem crescente, usando as funções acima.
+
+Dicas:
+
+Comece simples: só tente ordenar 3 números. Depois passe para 5, depois N.
+
+Use ft_sorted_list_insert como referência para decidir onde colocar um número na outra pilha.
+
+Tente escrever uma função is_sorted(stack) para testar se stack_a já está ordenada.
+
+Se você quiser, eu posso te escrever um esqueleto em C com duas pilhas e funções de movimentação (push, swap, rotate) para você começar a implementar o algoritmo do Push Swap.*/
+    
+
+1️⃣ Operações de swap
+
+sa → troca os dois primeiros de A 1
+
+sb → troca os dois primeiros de B
+
+ss → sa + sb ao mesmo tempo
+
+2️⃣ Operações de push
+
+pa → topo de B para A
+
+pb → topo de A para B
+
+3️⃣ Operações de rotate
+
+ra → primeiro de A vai para o fim 1 
+
+rb → primeiro de B vai para o fim
+
+rr → ra + rb ao mesmo tempo
+
+4️⃣ Operações de reverse rotate
+
+rra → último de A vai para o topo
+
+rrb → último de B vai para o topo
+
+rrr → rra + rrb ao mesmo tempo
