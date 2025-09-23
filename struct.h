@@ -6,7 +6,7 @@
 /*   By: peazeved <peazeved@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 13:23:03 by peazeved          #+#    #+#             */
-/*   Updated: 2025/09/21 18:10:19 by peazeved         ###   ########.fr       */
+/*   Updated: 2025/09/23 15:09:48 by peazeved         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_list *add_elem(void *data, size_t size); // cria nodes
 void ft_freelist(t_list **head); // liberta nodes e data
 void ft_append(t_list **begin, void *data, size_t size); // adiciona novos elem
 int ft_list_size(t_list *begin); // contagem de elem para saber qual sort usar!!!!.s
-
+int ft_is_sorted(t_list *node);
 //COMANDOS
 void ft_pa(t_list **stacka, t_list **stackb);
 void ft_pb(t_list ** stacka, t_list **stackb);

@@ -6,7 +6,7 @@
 /*   By: peazeved <peazeved@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:07:17 by peazeved          #+#    #+#             */
-/*   Updated: 2025/09/21 18:09:52 by peazeved         ###   ########.fr       */
+/*   Updated: 2025/09/23 15:15:09 by peazeved         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,29 @@ void ft_append(t_list **begin, void *data, size_t size)
 int ft_list_size(t_list *begin)
 {
     int i;
-    t_list *node ;
 
-    node = begin;
     i = 0;
-    while(node)
+    while(begin)
     {
+        begin =begin->next;
         i++;
-        node= node->next;
     }
     return i;
 }
- 
+
+int ft_is_sorted(t_list *node)
+{
+    if(!node)
+        return 1;
+    while(node->next)
+    {
+        int val1 = *(int*)node->data;
+        int val2 = *(int*)node->next->data;
+        
+        if(val1 > val2)
+            return 1;
+        node = node->next;  
+    }
+    write(1 ,"isSorted\n", 10);
+    return 0; // esta fixe
+}

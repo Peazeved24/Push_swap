@@ -1,48 +1,43 @@
 #include "struct.h"
 
-static int ft_cmp(void *d1, void *d2)
-{
-    return *(int*)d1 - *(int*)d2;
-}
-
-static void ft_shortbreak(t_list **stack, t_list *node, int size)
+static void ft_shortbreak(t_list **stack, t_list *node, int size) // para encontrar a posicao do node.
 {
     int pos = 0;
     t_list *tmp = *stack;
 
     // Descobre a posição do nó
-    while (tmp && tmp != node)
+    while (tmp && tmp != node) // a b c e 
     {
-        tmp = tmp->next;
+        tmp = tmp->next; // vai alterando (i++ == listas)
         pos++;
     }
-
-    // Escolhe rota mais curta
+     // Escolhe rota mais curta
     if (pos <= size / 2)
-        while (*stack != node)
-            ft_ra(stack);
+        while (*stack != node) 
+            ft_ra(stack); // ra -- o meu primeiro passa para ultimo
     else
         while (*stack != node)
-            ft_rra(stack);
+            ft_rra(stack); // ultimo passa para o inicio.
 }
 
-void ft_sort2(t_list **stacka)
+void ft_sort2(t_list **stacka) // corrigido !! sem a cmp para ter mais espaco!!
 {
     
-    if(!stacka || !*stacka || !(*stacka)->next) // condicao principal
+    if(!stacka || ft_list_size(*stacka) < 2) // condicao principal
         return;
-    
-    t_list *node = *stacka;
-
-    if(ft_cmp(node->data, node->next->data) < 0) //SORTED
+    if(ft_is_sorted(*stacka) == 0)
         return;
-    if(ft_cmp(node->data, node->next->data) > 0)
+    t_list *node;
+    node = *stacka;
+    if(*(int*)node->data > *(int*)node->next->data) //caso n for
             ft_sa(stacka);
 }
 
 void ft_sort3(t_list **stacka) 
 {
-    if(!stacka || !*stacka || !(*stacka)->next || !(*stacka)->next->next)
+    if(!stacka || ft_list_size(*stacka) < 3) // condicao principal
+        return;
+    if(ft_is_sorted(*stacka) == 0)
         return;
     t_list *node;   
     int first;
@@ -53,9 +48,7 @@ void ft_sort3(t_list **stacka)
     first = *(int*)node->data;
     second = *(int*)node->next->data;
     third= *(int*)node->next->next->data;
-    if(first < second && second < third)    
-        return;
-    else if(first > second && second < third && first > third) // 312
+    if(first > second && second < third && first > third) // 312
         ft_ra(stacka);
     else if(first < second && second > third && first > third) //231 x
         ft_rra(stacka);
@@ -69,29 +62,29 @@ void ft_sort3(t_list **stacka)
 
 void ft_sort5(t_list **stacka, t_list **stackb) // pegar os 2 mais pequenos e dar sort aos 3 restantes.
 {
+    if(!stacka || ft_list_size(*stacka) < 4) // condicao principal
+        return;
+    if(ft_is_sorted(*stacka) == 0)
+        return;
     t_list *min;
     t_list *tmp; // meu proximo valor
     int i;
-    int size;
 
-    size = 0;
     i = 0;
-    while(i++ < 2)
+    while(i++ < 2) // 2 voltas -- atras de 2 numeros
     {
         tmp = *stacka; // a cada chamada tmp pega o primeiro valor
         min = tmp;// o meu min e o meu valor atual
-        size = 0;
         while(tmp) //enqaunto n chegar ao fim!
         {   
             if(*(int*)tmp->data < *(int*)min->data) // se for inferior 
                 min = tmp; // meu valor inferior.
             tmp = tmp->next; // passa para o proximo.
-            size++;
         }
-        ft_shortbreak(stacka, min,size);
+        ft_shortbreak(stacka, min,ft_list_size(*stacka));
         ft_pb(stacka, stackb);
     }
     ft_sort3(stacka);
     ft_pa(stacka, stackb);
     ft_pa(stacka, stackb);
-}   
+}
