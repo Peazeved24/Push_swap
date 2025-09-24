@@ -6,14 +6,14 @@
 /*   By: peazeved <peazeved@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:42:19 by peazeved          #+#    #+#             */
-/*   Updated: 2025/09/21 17:31:52 by peazeved         ###   ########.fr       */
+/*   Updated: 2025/09/24 14:52:57 by peazeved         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "struct.h"
 
-int ft_save_atoi(const char *str, int *out)
+int ft_save_atoi(const char *str, int *out) // GOD LIKE  algoritmo
 {
     long long n = 0; 
     int s = 1;
@@ -43,7 +43,7 @@ int ft_save_atoi(const char *str, int *out)
 // parsing for non numeric
 // overflow
 
-void ft_runlist(t_list *begin)
+void ft_runlist(t_list *begin) // run a lista (testes)
 {
     t_list *node = begin;
 
@@ -56,7 +56,7 @@ void ft_runlist(t_list *begin)
     }
 }
 
-t_list *add_elem(void *data, size_t size)
+t_list *add_elem(void *data, size_t size) // add elem de forma dinamica
 {
     size_t i = 0;
     t_list *node = malloc(sizeof(t_list));
@@ -74,7 +74,7 @@ t_list *add_elem(void *data, size_t size)
     return node;
 }
 
-int ft_repeat_elem(t_list *begin, int value)
+int ft_repeat_elem(t_list *begin, int value) //verifica se ha repeticoes.
 {
     t_list  *node = begin;
     
