@@ -2,8 +2,8 @@
 
 static void ft_shortbreak(t_list **stack, t_list *node, int size) // para encontrar a posicao do node.
 {
-    int pos = 0;
-    t_list *tmp = *stack;
+    int pos = 0; // index
+    t_list *tmp = *stack; // tmp !-- primeiro valor.
 
     // Descobre a posição do nó
     while (tmp && tmp != node) // a b c e 
@@ -43,7 +43,7 @@ void ft_sort3(t_list **stacka)
     int first;
     int second;
     int third;
-    
+     
     node = *stacka;
     first = *(int*)node->data;
     second = *(int*)node->next->data;
@@ -82,9 +82,9 @@ void ft_sort5(t_list **stacka, t_list **stackb) // pegar os 2 mais pequenos e da
             tmp = tmp->next; // passa para o proximo.
         }
         ft_shortbreak(stacka, min,ft_list_size(*stacka));
-        ft_pb(stacka, stackb);
+        ft_pb(stacka, stackb); // passar os valores inferiores para o meu b!!
     }
-    ft_sort3(stacka);
-    ft_pa(stacka, stackb);
+    ft_sort3(stacka); /// os resntantes 3 --sort3 
+    ft_pa(stacka, stackb); // pega os meus 2 min e coloca em a
     ft_pa(stacka, stackb);
 }

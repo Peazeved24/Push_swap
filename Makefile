@@ -3,7 +3,7 @@ NAME = push_swap.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = main.c utils.c utils2.c opRotate.c opSwap.c opPush.c opReverserotate.c opSort.c
+SRCS = main.c utils.c utils2.c opRotate.c opSwap.c opPush.c opReverserotate.c opSort.c opRadix.c
 
 OBJS = $(SRCS:.c=.o)
 
