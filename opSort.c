@@ -33,36 +33,53 @@ void ft_sort2(t_list **stacka) // corrigido !! sem a cmp para ter mais espaco!!
             ft_sa(stacka);
 }
 
-void ft_sort3(t_list **stacka) 
+void ft_sort3(t_list **stacka, t_list **stackb)
 {
-    if(!stacka || ft_list_size(*stacka) < 3) // condicao principal
+    if(!stacka || ft_list_size(*stacka) < 2)
         return;
     if(ft_is_sorted(*stacka) == 0)
         return;
-    t_list *node;   
-    int first;
-    int second;
-    int third;
-     
+    t_list *node;
+    t_list *max;
+
+    max = *stacka;
     node = *stacka;
-    first = *(int*)node->data;
-    second = *(int*)node->next->data;
-    third= *(int*)node->next->next->data;
-    if(first > second && second < third && first > third) // 312
-        ft_ra(stacka);
-    else if(first < second && second > third && first > third) //231 x
-        ft_rra(stacka);
-    else if(first > second && second < third && third > first) //213
-        ft_sa(stacka);
-    else if(first > second && second > third) //321 x
-        (ft_ra(stacka), ft_sa(stacka));
-    else if(first < second && second > third && first < third) //132 x
-        (ft_sa(stacka), ft_ra(stacka));
+    while(node)
+    {
+        if(*(int*)max->data > *(int*)node->data)
+            max = node;
+        node = node->next;
+    }
+    ft_shortbreak(stacka, max, ft_list_size(*stacka));
+    ft_pb(stacka, stackb);
+    ft_sort2(stacka);
+    ft_pa(stacka, stackb);
+}
+
+void ft_sort4(t_list **stacka, t_list **stackb)
+{
+    if(!stacka || ft_list_size(*stacka) < 4) // nul ou n tem o numero de elem.
+        return;
+    if(ft_is_sorted(*stacka) == 0) // ja esta sorted
+        return;
+    t_list *tmp = *stacka; // refernecia
+    t_list *max = *stacka; // valores max
+    
+    while(tmp) // percorre a lista a procura do mair valor!
+    {
+        if(*(int*)max->data > *(int*)tmp->data)
+            max = tmp; // meu novo valor maximo.
+        tmp = tmp->next; // atualiza a lista.
+    }
+    ft_shortbreak(stacka, max, ft_list_size(*stacka));
+    ft_pb(stacka, stackb);
+    ft_sort3(stacka, stackb);
+    ft_pa(stacka, stackb);
 }
 
 void ft_sort5(t_list **stacka, t_list **stackb) // pegar os 2 mais pequenos e dar sort aos 3 restantes.
 {
-    if(!stacka || ft_list_size(*stacka) < 4) // condicao principal
+    if(!stacka || ft_list_size(*stacka) < 5) // condicao principal
         return;
     if(ft_is_sorted(*stacka) == 0)
         return;
@@ -84,7 +101,7 @@ void ft_sort5(t_list **stacka, t_list **stackb) // pegar os 2 mais pequenos e da
         ft_shortbreak(stacka, min,ft_list_size(*stacka));
         ft_pb(stacka, stackb); // passar os valores inferiores para o meu b!!
     }
-    ft_sort3(stacka); /// os resntantes 3 --sort3 
+    ft_sort3(stacka, stackb); /// os resntantes 3 --sort3
     ft_pa(stacka, stackb); // pega os meus 2 min e coloca em a
     ft_pa(stacka, stackb);
 }

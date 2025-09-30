@@ -6,7 +6,7 @@
 /*   By: peazeved <peazeved@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 13:23:03 by peazeved          #+#    #+#             */
-/*   Updated: 2025/09/29 12:01:52 by peazeved         ###   ########.fr       */
+/*   Updated: 2025/09/30 12:59:13 by peazeved         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ void ft_rrr(t_list **stacka, t_list **stackb);
 
 //sort
 void ft_sort2(t_list **stacka); // para 2
-void ft_sort3(t_list **stacka); // .,..3
-void ft_sort5(t_list **stacka, t_list **stackb);// 4 o 5
+void ft_sort3(t_list **stacka, t_list **stackb); // .,..3
+void ft_sort4(t_list **stacka, t_list **stackb); //4
+void ft_sort5(t_list **stacka, t_list **stackb);// 5
 void ft_radixsort(t_list **stacka, t_list **stackb, int size); // +5
 void ft_index(t_list *node);
     // ft_indexing para auxiliar a ft_radix.

@@ -6,7 +6,7 @@
 /*   By: peazeved <peazeved@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 12:44:58 by peazeved          #+#    #+#             */
-/*   Updated: 2025/09/29 14:17:09 by peazeved         ###   ########.fr       */
+/*   Updated: 2025/09/30 11:58:03 by peazeved         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void ft_index(t_list *node)
 
 void ft_radixsort(t_list **stacka, t_list **stackb, int size) // 
 {
+    if(!*stacka || ft_list_size(*stacka) < 5)
+        return;
     int mb;
     int i = 0;
 

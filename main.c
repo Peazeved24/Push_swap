@@ -6,7 +6,7 @@
 /*   By: peazeved <peazeved@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:36:59 by peazeved          #+#    #+#             */
-/*   Updated: 2025/09/29 14:15:48 by peazeved         ###   ########.fr       */
+/*   Updated: 2025/09/30 13:21:18 by peazeved         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,25 @@ int main(int ac, char **av)
     {
         if(ft_list_size(stacka) == 2)
         {
-            ft_runlist(stacka);
-            printf("\n");
             ft_sort2(&stacka);
-            printf("\n");
-            ft_runlist(stacka);
         }
         else if(ft_list_size(stacka) == 3)
         {
+            printf("sort 3\n");
             ft_runlist(stacka);
-            printf("\n");
-            ft_sort3(&stacka);
-            printf("\n");
+            ft_sort3(&stacka, &stackb);   
             ft_runlist(stacka);
         }
-        else if(ft_list_size(stacka) <= 5)
+        else if(ft_list_size(stacka) == 4)
         {
+             printf("sort 4\n");
+            ft_runlist(stacka);
+            ft_sort4(&stacka, &stackb);   
+            ft_runlist(stacka);
+        }
+        else if(ft_list_size(stacka) == 5)
+        {
+            printf("5valore");
             ft_runlist(stacka);
             printf("\n");
             ft_sort5(&stacka, &stackb);
@@ -69,6 +72,7 @@ int main(int ac, char **av)
     }
     else
     {
+        printf("val + do que 5\n");
         ft_runlist(stacka);
         printf("\n");
         ft_index(stacka);
@@ -77,7 +81,6 @@ int main(int ac, char **av)
         ft_runlist(stacka);
         
     }
-    printf("\n");
     ft_freelist(&stacka);
     ft_freelist(&stackb);
     printf("\n");

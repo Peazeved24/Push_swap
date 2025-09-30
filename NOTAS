@@ -199,3 +199,119 @@ rra → último de A vai para o topo
 rrb → último de B vai para o topo
 
 rrr → rra + rrb ao mesmo tempo
+
+--------------------------------------
+
+#SAGRADO#
+
+a ft_shortbreak e a funcao sagrada para conseguir utilizar os meus sort de forma mais eficiente
+    - a shortbreak procura a posicao do meu valor MAx ou MIn que estou a procura
+        - apos encontrar a posicao da mesma ou + proximo do meu inicio ou mais longe
+                    - da uns dos comandos ou troca os primeiros 2 ! ou manda os ultimos 2 para o inicio
+com isso a minhas sort3 ficou melhor !
+
+#ANTES-
+void ft_sort3(t_list **stacka) 
+{
+    if(!stacka || ft_list_size(*stacka) < 3) // condicao principal
+        return;
+    if(ft_is_sorted(*stacka) == 0)
+        return;
+    t_list *node;   
+    int first;
+    int second;
+    int third;
+     
+    node = *stacka;
+    first = *(int*)node->data;
+    second = *(int*)node->next->data;
+    third= *(int*)node->next->next->data;
+    if(first > second && second < third && first > third) // 312
+        ft_ra(stacka);
+    else if(first < second && second > third && first > third) //231 x
+        ft_rra(stacka);
+    else if(first > second && second < third && third > first) //213
+        ft_sa(stacka);
+    else if(first > second && second > third) //321 x
+        (ft_ra(stacka), ft_sa(stacka));
+    else if(first < second && second > third && first < third) //132 x
+        (ft_sa(stacka), ft_ra(stacka));
+}
+
+#DEPOIS
+void ft_sort3(t_list **stacka, t_list **stackb)
+{
+    if(!stacka || ft_list_size(*stacka) < 2)
+        return;
+    if(ft_is_sorted(*stacka) == 0)
+        return;
+    t_list *node;
+    t_list *max;
+
+    max = *stacka;
+    node = *stacka;
+    while(node)
+    {
+        if(*(int*)max->data > *(int*)node->data)
+            max = node;
+        node = node->next;
+    }
+    ft_shortbreak(stacka, max, ft_list_size(*stacka));
+    ft_pb(stacka, stackb);
+    ft_sort2(stacka);
+    ft_pa(stacka, stackb);
+}
+
+- IMPLEMENTACAO DO MEU SORT4
+    porque?
+        - pq a minha sort5 ja estava grande kkkk e fui na preguica , pq se n, era so fazer um sort2
+            aos valores passados na stackb para depois sim mandar eles para a minha stacka
+            - so que isso ia pedir mais condicoes entao modulei a sort4.
+- criacao da sort4 (logica)
+
+void ft_sort4(t_list **stacka, t_list **stackb)
+{
+    if(!stacka || ft_list_size(*stacka) < 4) // nul ou n tem o numero de elem.
+        return;
+    if(ft_is_sorted(*stacka) == 0) // ja esta sorted
+        return;
+    t_list *tmp = *stacka; // refernecia
+    t_list *max = *stacka; // valores max
+    
+    while(tmp) // percorre a lista a procura do mair valor!
+    {
+        if(*(int*)max->data > *(int*)tmp->data)
+            max = tmp; // meu novo valor maximo.
+        tmp = tmp->next; // atualiza a lista.
+    }
+    ft_shortbreak(stacka, max, ft_list_size(*stacka));
+    ft_pb(stacka, stackb);
+    ft_sort3(stacka, stackb);
+    ft_pa(stacka, stackb);
+
+
+    -mesma logica utiliza!
+        - verificao de NULL e de valores
+        - verificao da is_sorted
+        - apos isso a mesma logica:
+        
+        - dois valores tipo t_list! um max/min que vai ter o msm valor da minha tmp
+            - pois serve somente para comparacao
+        - um loop que percorre com uma condicao de comparacao de valores
+            - caso houver um valor maior/inferior ao max/min -- atualiza o mesmo
+        - apos encontrar - manda shortbreak ! -- diz me onde esta -- faz o calculo para ou usar RA ou RRA
+        - mandar entao o valor prentendio para stackb
+        - dar sort pretendido de acordo com o numero restante -- se sobrar 3 da sort3 etc...
+        - mandar de volta o valor da stack para a stacka.
+     
+
+#CONDICOES DE SEGURANCA
+    - primeiro verificar se o meu valor e NULL ! !stack 
+        ou 
+    - verificar se o tamanho esta de acordo com o sort ! 
+        - ft_listsize!! < ao valor do sort(ex para sort3 o valor tem de ser == 3 se for < == return)
+    - apos isso verificar se ja esta sorted!
+        ft_isorted 
+            - simplesmente faz um loop e ve se ha um valor *(int*)stacka->data > *(int)stacka->next->data
+                se for verdade logo n esta sorted ... se ao chegar ao fim , n houve quebra de condicao 
+                    - e true -- sorted.

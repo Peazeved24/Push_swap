@@ -6,7 +6,7 @@
 /*   By: peazeved <peazeved@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:07:17 by peazeved          #+#    #+#             */
-/*   Updated: 2025/09/24 14:56:05 by peazeved         ###   ########.fr       */
+/*   Updated: 2025/09/30 11:49:49 by peazeved         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void ft_freelist(t_list **head) // free no fim !
         t_list *tmp = node->next;
         free(node->data);
         free(node);
-        printf("#");
+        write(1, "#", 1);
         node = tmp;
     }
     *head = NULL;
