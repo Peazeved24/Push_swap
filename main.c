@@ -6,11 +6,33 @@
 /*   By: peazeved <peazeved@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:36:59 by peazeved          #+#    #+#             */
-/*   Updated: 2025/09/30 13:21:18 by peazeved         ###   ########.fr       */
+/*   Updated: 2025/09/30 14:55:47 by peazeved         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "struct.h"
+
+static void ft_picksort(t_list **stacka, t_list **stackb, int size)
+{
+    if(ft_is_sorted(*stacka)) // ja esta sorted
+        return;
+    if(size <= 5)
+    {
+        if(size == 2)
+            ft_sort2(stacka);
+        else if(size == 3)
+            ft_sort3(stacka);
+        else if(size == 4)
+            ft_sort4(stacka, stackb);   
+        else if(size == 5)
+            ft_sort5(stacka, stackb); 
+    }
+    else
+    {
+        ft_index(*stacka);
+        ft_radixsort(stacka, stackb, ft_list_size(*stacka));
+    }
+}
 
 int main(int ac, char **av)
 {
@@ -20,69 +42,19 @@ int main(int ac, char **av)
     int val;
 
     if(ac <= 2)
-    {
-        printf("erro1");
         return 0; 
-    }
     while(i < ac) // processamento de dados!
     {
 
         if(!ft_save_atoi(av[i], &val)) // 3 coisas - gera numeros, verifica os meus chars e ve overflows
-        { 
-            printf("error2");
             return 1;
-        }
         if(ft_repeat_elem(stacka, val))
-        {
-            printf("error3");
             return 1;
-        }
         ft_append(&stacka, &val, sizeof(int)); // apos a validacao - cria!
         i++; 
     }
-    if(ft_list_size(stacka) <= 5)
-    {
-        if(ft_list_size(stacka) == 2)
-        {
-            ft_sort2(&stacka);
-        }
-        else if(ft_list_size(stacka) == 3)
-        {
-            printf("sort 3\n");
-            ft_runlist(stacka);
-            ft_sort3(&stacka, &stackb);   
-            ft_runlist(stacka);
-        }
-        else if(ft_list_size(stacka) == 4)
-        {
-             printf("sort 4\n");
-            ft_runlist(stacka);
-            ft_sort4(&stacka, &stackb);   
-            ft_runlist(stacka);
-        }
-        else if(ft_list_size(stacka) == 5)
-        {
-            printf("5valore");
-            ft_runlist(stacka);
-            printf("\n");
-            ft_sort5(&stacka, &stackb);
-            printf("\n");
-            ft_runlist(stacka);   
-        }
-    }
-    else
-    {
-        printf("val + do que 5\n");
-        ft_runlist(stacka);
-        printf("\n");
-        ft_index(stacka);
-        ft_radixsort(&stacka, &stackb, ft_list_size(stacka));
-        printf("\n");
-        ft_runlist(stacka);
-        
-    }
+    ft_picksort(&stacka, &stackb , ft_list_size(stacka));
     ft_freelist(&stacka);
     ft_freelist(&stackb);
-    printf("\n");
     return 0;
 } 

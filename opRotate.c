@@ -6,7 +6,7 @@
 /*   By: peazeved <peazeved@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:53:09 by peazeved          #+#    #+#             */
-/*   Updated: 2025/09/06 16:42:17 by peazeved         ###   ########.fr       */
+/*   Updated: 2025/09/30 15:03:49 by peazeved         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,18 @@ static void ft_rotate(t_list **stack)
 void ft_ra(t_list **stacka)
 {
     ft_rotate(stacka);   
-    printf("ra\n");
+    write(1, "ra\n", 3); 
 }
 
 void ft_rb(t_list **stackb)
 {
     ft_rotate(stackb);
-    printf("rb\n");
+    write(1, "rb\n", 3); 
 }
 
 void ft_rr(t_list **stacka, t_list **stackb)
 {
     ft_rotate(stacka);
     ft_rotate(stackb);
-    printf("rr\n");
+    write(1, "rr\n", 3); 
 }

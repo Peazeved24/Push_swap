@@ -6,7 +6,7 @@
 /*   By: peazeved <peazeved@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:07:17 by peazeved          #+#    #+#             */
-/*   Updated: 2025/09/30 11:49:49 by peazeved         ###   ########.fr       */
+/*   Updated: 2025/09/30 14:53:16 by peazeved         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void ft_freelist(t_list **head) // free no fim !
         t_list *tmp = node->next;
         free(node->data);
         free(node);
-        write(1, "#", 1);
         node = tmp;
     }
     *head = NULL;
@@ -61,16 +60,15 @@ int ft_list_size(t_list *begin) //condicao de seguranca.
 int ft_is_sorted(t_list *node) // condicao para a stacka
 {
     if(!node)
-        return 1;
+        return 0;
     while(node->next) // 
     {
         int val1 = *(int*)node->data; // primeiro elemot
         int val2 = *(int*)node->next->data; // proximo elemnto
         
         if(val1 > val2)
-            return 1;
+            return 0;
         node = node->next;  
     }
-    write(1 ,"isSorted\n", 10);
-    return 0; // esta fixe 
+    return 1; // esta fixe 
 }

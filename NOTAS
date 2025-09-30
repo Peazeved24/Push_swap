@@ -303,7 +303,7 @@ void ft_sort4(t_list **stacka, t_list **stackb)
         - mandar entao o valor prentendio para stackb
         - dar sort pretendido de acordo com o numero restante -- se sobrar 3 da sort3 etc...
         - mandar de volta o valor da stack para a stacka.
-     
+         
 
 #CONDICOES DE SEGURANCA
     - primeiro verificar se o meu valor e NULL ! !stack 

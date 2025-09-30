@@ -6,7 +6,7 @@
 /*   By: peazeved <peazeved@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 12:44:58 by peazeved          #+#    #+#             */
-/*   Updated: 2025/09/30 11:58:03 by peazeved         ###   ########.fr       */
+/*   Updated: 2025/09/30 13:56:42 by peazeved         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,9 @@ void ft_radixsort(t_list **stacka, t_list **stackb, int size) //
     int mb;
     int i = 0;
 
-    // descobrir quantos bits preciso
-    mb= 0;
+    mb = 0;
     while ((size - 1) >> mb)
         mb++;
-
-    // loop para cada bit
     while (i < mb)
     {
         int j = 0;
