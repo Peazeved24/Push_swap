@@ -6,13 +6,13 @@
 /*   By: peazeved <peazeved@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:07:17 by peazeved          #+#    #+#             */
-/*   Updated: 2025/09/30 14:53:16 by peazeved         ###   ########.fr       */
+/*   Updated: 2025/12/09 13:21:38 by peazeved         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "struct.h"
 
-void ft_freelist(t_list **head) // free no fim !
+void ft_freelist(t_list **head)
 {
     t_list *node = *head;
     while(node)
@@ -25,7 +25,7 @@ void ft_freelist(t_list **head) // free no fim !
     *head = NULL;
 }
 
-void ft_append(t_list **begin, void *data, size_t size) // gera elementos
+void ft_append(t_list **begin, void *data, size_t size)
 {
     
     t_list *new = add_elem(data, size);
@@ -36,7 +36,7 @@ void ft_append(t_list **begin, void *data, size_t size) // gera elementos
     else
     {
         t_list *node = *begin;
-        while(node->next) // 
+        while(node->next) 
         {
             node = node->next;
         }
@@ -44,7 +44,7 @@ void ft_append(t_list **begin, void *data, size_t size) // gera elementos
     }
 }
 
-int ft_list_size(t_list *begin) //condicao de seguranca.
+int ft_list_size(t_list *begin) 
 {
     int i;
 
@@ -57,18 +57,18 @@ int ft_list_size(t_list *begin) //condicao de seguranca.
     return i;
 }
 
-int ft_is_sorted(t_list *node) // condicao para a stacka
+int ft_is_sorted(t_list *node)
 {
     if(!node)
         return 0;
-    while(node->next) // 
+    while(node->next)
     {
-        int val1 = *(int*)node->data; // primeiro elemot
-        int val2 = *(int*)node->next->data; // proximo elemnto
+        int val1 = *(int*)node->data;
+        int val2 = *(int*)node->next->data;
         
         if(val1 > val2)
             return 0;
         node = node->next;  
     }
-    return 1; // esta fixe 
+    return 1;
 }

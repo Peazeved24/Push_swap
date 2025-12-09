@@ -6,7 +6,7 @@
 /*   By: peazeved <peazeved@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 15:00:46 by peazeved          #+#    #+#             */
-/*   Updated: 2025/09/30 15:03:38 by peazeved         ###   ########.fr       */
+/*   Updated: 2025/12/09 13:35:45 by peazeved         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void ft_pa(t_list **stacka, t_list **stackb)
 
     if (!stackb || !*stackb)
         return;
-    node = *stackb;              // pega o topo de B
-    *stackb = (*stackb)->next;   // avança B
-    node->next = *stacka;        // liga no topo de A
-    *stacka = node;              // agora A aponta para o novo topo
+    node = *stackb;
+    *stackb = (*stackb)->next;
+    node->next = *stacka;
+    *stacka = node;       
     write(1, "pa\n", 3);
 }
 
@@ -31,9 +31,9 @@ void ft_pb(t_list **stacka, t_list **stackb)
 
     if (!stacka || !*stacka)
         return;
-    node = *stacka;              // pega o topo de A
-    *stacka = (*stacka)->next;   // avança A
-    node->next = *stackb;        // liga no topo de B
-    *stackb = node;              // agora B aponta para o novo topo
+    node = *stacka;
+    *stacka = (*stacka)->next;
+    node->next = *stackb;
+    *stackb = node;
     write(1, "pb\n", 3);
 }

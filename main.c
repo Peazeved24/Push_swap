@@ -6,7 +6,7 @@
 /*   By: peazeved <peazeved@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:36:59 by peazeved          #+#    #+#             */
-/*   Updated: 2025/09/30 14:55:47 by peazeved         ###   ########.fr       */
+/*   Updated: 2025/12/09 13:35:17 by peazeved         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void ft_picksort(t_list **stacka, t_list **stackb, int size)
 {
-    if(ft_is_sorted(*stacka)) // ja esta sorted
+    if(ft_is_sorted(*stacka))
         return;
     if(size <= 5)
     {
@@ -43,14 +43,14 @@ int main(int ac, char **av)
 
     if(ac <= 2)
         return 0; 
-    while(i < ac) // processamento de dados!
+    while(i < ac)
     {
 
-        if(!ft_save_atoi(av[i], &val)) // 3 coisas - gera numeros, verifica os meus chars e ve overflows
+        if(!ft_save_atoi(av[i], &val))
             return 1;
         if(ft_repeat_elem(stacka, val))
             return 1;
-        ft_append(&stacka, &val, sizeof(int)); // apos a validacao - cria!
+        ft_append(&stacka, &val, sizeof(int));
         i++; 
     }
     ft_picksort(&stacka, &stackb , ft_list_size(stacka));

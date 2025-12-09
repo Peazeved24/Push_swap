@@ -6,7 +6,7 @@
 /*   By: peazeved <peazeved@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 16:18:30 by peazeved          #+#    #+#             */
-/*   Updated: 2025/09/30 15:03:57 by peazeved         ###   ########.fr       */
+/*   Updated: 2025/12/09 13:20:58 by peazeved         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void ft_swap(t_list **stack)
     if(!stack || !*stack)
         return;
     t_list *node = *stack;
-    t_list *node2 = (*stack)->next; // (*is the way!!!)
+    t_list *node2 = (*stack)->next;
     node->next = node2->next;
     node2->next = node;
     *stack = node2;

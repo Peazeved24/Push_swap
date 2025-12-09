@@ -6,7 +6,7 @@
 /*   By: peazeved <peazeved@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:53:09 by peazeved          #+#    #+#             */
-/*   Updated: 2025/09/30 15:03:49 by peazeved         ###   ########.fr       */
+/*   Updated: 2025/12/09 13:34:33 by peazeved         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void ft_rotate(t_list **stack)
         last = last->next;
     }
     *stack = node->next;
-    node->next = NULL; //  o meu primeiro e o ultimo!
+    node->next = NULL;
     last->next = node;
 }
 
