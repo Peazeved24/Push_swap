@@ -23,7 +23,7 @@ static void ft_shortbreak(t_list **stack, t_list *node, int size) // para encont
 void ft_sort2(t_list **stacka) // corrigido !! sem a cmp para ter mais espaco!!
 {
     
-    if(!stacka || ft_list_size(*stacka) < 2) // condicao principal
+    if(!stacka) // condicao principal
         return;
     
     t_list *node;
@@ -35,7 +35,7 @@ void ft_sort2(t_list **stacka) // corrigido !! sem a cmp para ter mais espaco!!
 void ft_sort3(t_list **stacka)
 {
 
-    if(!stacka || ft_list_size(*stacka) < 3) // nul ou n tem o numero de elem.
+    if(!stacka) // nul ou n tem o numero de elem.
         return;
     int first = *(int*)(*stacka)->data;
     int second = *(int*)(*stacka)->next->data;
@@ -58,7 +58,7 @@ void ft_sort3(t_list **stacka)
 
 void ft_sort4(t_list **stacka, t_list **stackb)
 {
-    if(!stacka || ft_list_size(*stacka) < 4) // nul ou n tem o numero de elem.
+    if(!stacka) // nul ou n tem o numero de elem.
         return;
     t_list *tmp = *stacka; // refernecia
     t_list *max = *stacka; // valores max
@@ -77,7 +77,7 @@ void ft_sort4(t_list **stacka, t_list **stackb)
 
 void ft_sort5(t_list **stacka, t_list **stackb) // pegar os 2 mais pequenos e dar sort aos 3 restantes.
 {
-    if(!stacka || ft_list_size(*stacka) < 5) // condicao principal
+    if(!stacka) // condicao principal
         return;
     t_list *min;
     t_list *tmp; // meu proximo valor
